@@ -1,185 +1,699 @@
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" data-theme="candy" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natália Silva — Developer, Designer & Podcast Host</title>
+<meta name="description" content="Natália Silva — full-stack developer and UI/UX designer in New York building AI tools, kids' learning apps and the Ola Tech podcast.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Host+Grotesk:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<style>
+/* ================= THEMES =================
+   candy = bright color-blocks (default)
+   rose  = soft pastel version
+   mode  = light / dark page background      */
+:root{
+  --serif:'Bitter',Georgia,serif;
+  --sans:'Host Grotesk',system-ui,sans-serif;
+  --mono:'Space Grotesk',system-ui,sans-serif;
+  --r:26px; --b:3px; --sh:6px; --ink-card:#141114;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+[data-theme="candy"]{
+  --c1:#E894F5; /* violet */ --c2:#F7898F; /* coral */ --c3:#55DBC9; /* teal */
+  --c4:#62C7F5; /* sky */    --c5:#FCE97A; /* yellow */ --c6:#FBB140; /* orange */
+  --pill:#FFF6EC; --head:#FDEBDC;
+}
+[data-theme="rose"]{
+  --c1:#F2B5CF; --c2:#EFA3AC; --c3:#A9DDCC; --c4:#B9D4F1; --c5:#F7E3A1; --c6:#F4C095;
+  --pill:#FFF8F3; --head:#FBE7E4;
+}
+[data-mode="light"]{ --bg:#FFFFFF; --text:#141114; --muted:#4A4148; --edge:#141114; }
+[data-theme="rose"][data-mode="light"]{ --bg:#FFF9F6 }
+[data-mode="dark"]{ --bg:#17141A; --text:#F6EFE7; --muted:#C9BFC6; --edge:#F6EFE7; --head:#221D25 }
 
-        <link rel="stylesheet" href="../natalia_portfolio/css/app.css">
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.55;transition:background .35s,color .35s;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(1240px,94vw);margin-inline:auto}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.12;letter-spacing:-.01em}
 
+/* ---------- building blocks ---------- */
+.card{background:var(--cbg,var(--pill));color:var(--ink-card);border:var(--b) solid var(--edge);border-radius:var(--r);box-shadow:var(--sh) var(--sh) 0 var(--edge);padding:clamp(1.3rem,2.6vw,2.1rem);position:relative;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card.lift:hover{transform:translate(-3px,-3px) rotate(-.4deg);box-shadow:calc(var(--sh) + 4px) calc(var(--sh) + 4px) 0 var(--edge)}
+.v1{--cbg:var(--c1)}.v2{--cbg:var(--c2)}.v3{--cbg:var(--c3)}.v4{--cbg:var(--c4)}.v5{--cbg:var(--c5)}.v6{--cbg:var(--c6)}
+.card a{color:var(--ink-card)}
+.pill{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--serif);font-weight:600;font-size:1.02rem;padding:.32rem .95rem;background:var(--pill);color:var(--ink-card);border:2px solid #141114;border-radius:999px;box-shadow:3px 3px 0 #141114;text-decoration:none;transition:transform .15s,box-shadow .15s;cursor:pointer;white-space:nowrap}
+a.pill:hover,button.pill:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #141114}
+a.pill:active,button.pill:active{transform:translate(3px,3px);box-shadow:0 0 0 #141114}
+.pill.dark{background:#141114;color:#FFF6EC}
+.pill.small{font-size:.85rem;padding:.2rem .7rem;box-shadow:2px 2px 0 #141114}
+.pills{display:flex;flex-wrap:wrap;gap:.7rem .55rem}
+.eyebrow{font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;gap:.5rem;align-items:center;margin-bottom:.9rem}
+.eyebrow b{background:#141114;color:#FFF6EC;border-radius:6px;padding:.05rem .4rem}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.sec-head h2{font-size:clamp(2rem,4.6vw,3.3rem)}
+.sec-head .eyebrow{color:var(--text)}
+.sec-head .eyebrow b{background:var(--edge);color:var(--bg)}
+.sec-head p{color:var(--muted);max-width:460px}
+section{padding:70px 0}
+.dot{width:10px;height:10px;border-radius:50%;background:#1FA463;border:2px solid #141114;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.35)}}
+.hl{color:#fff;-webkit-text-stroke:0;text-shadow:2px 2px 0 #141114}
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-        <title>Natalia Portfolio </title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Natália Silva</a>
-                </div>
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:var(--head);border-bottom:var(--b) solid var(--edge);transition:background .35s}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:16px 0}
+.logo{font-family:var(--serif);font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);text-decoration:none;color:var(--text);display:flex;gap:.5rem;align-items:center}
+.wave-hand{display:inline-block;transform-origin:70% 70%;animation:wave 2.4s ease-in-out infinite}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-8deg)}}
+.nav-links{display:flex;gap:.55rem;align-items:center}
+.nav-links .pill.on{background:var(--c5)}
+.icon-pill{width:42px;height:42px;padding:0;justify-content:center;font-size:1.25rem}
+.menu-btn{display:none}
+.theme-wrap{position:relative}
+.theme-pop{position:absolute;right:0;top:54px;display:none;flex-direction:column;gap:.6rem;padding:1rem;min-width:210px;z-index:60}
+.theme-pop.open{display:flex}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid #141114;flex:none}
+.sw-candy{background:conic-gradient(#E894F5 0 25%,#55DBC9 0 50%,#FCE97A 0 75%,#F7898F 0)}
+.sw-rose{background:conic-gradient(#F2B5CF 0 25%,#A9DDCC 0 50%,#F7E3A1 0 75%,#EFA3AC 0)}
+.progress{position:fixed;top:0;left:0;height:5px;background:var(--c1);border-right:3px solid #141114;z-index:70;width:0}
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </div>
+/* mobile menu */
+.mobile-menu{position:fixed;inset:0;background:var(--c5);z-index:80;padding:90px 7vw 40px;transform:translateY(-105%);transition:transform .5s var(--ease);display:flex;flex-direction:column;gap:.9rem;border-bottom:var(--b) solid #141114}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;font-weight:800;color:#141114;text-decoration:none;display:flex;gap:1rem;align-items:baseline}
+.mobile-menu a small{font-family:var(--mono);font-size:.9rem}
+.mobile-close{position:absolute;top:20px;right:6vw}
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+/* ---------- hero bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;padding-top:28px}
+.intro{grid-column:span 8}
+.photo{grid-column:span 4;padding:14px;display:flex;flex-direction:column}
+.does{grid-column:span 4}.elsewhere{grid-column:span 4}.now{grid-column:span 4}
+.intro h1{font-family:var(--sans);font-weight:500;font-size:clamp(1.6rem,3.1vw,2.4rem);line-height:1.25;margin-bottom:1.2rem}
+.intro h1 strong{font-family:var(--serif);font-weight:800}
+.rotator{color:#fff;text-shadow:2px 2px 0 #141114;font-weight:700}
+.rotator::after{content:"|";color:#141114;text-shadow:none;animation:blink 1s steps(1) infinite;margin-left:2px;font-weight:400}
+@keyframes blink{50%{opacity:0}}
+.intro p{font-size:1.12rem;margin-bottom:1rem;max-width:640px}
+.cta-row{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-top:1.4rem}
+.status{display:inline-flex;gap:.55rem;align-items:center;font-weight:600;font-size:.95rem;margin-left:.3rem}
+.photo-frame{flex:1;border:var(--b) solid #141114;border-radius:18px;overflow:hidden;min-height:300px;background:var(--c1)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s var(--ease)}
+.photo:hover .photo-frame img{transform:scale(1.05)}
+.sticker{position:absolute;font-family:var(--serif);font-weight:700;font-size:.92rem;background:var(--pill);border:2px solid #141114;border-radius:999px;padding:.35rem .85rem;box-shadow:3px 3px 0 #141114;display:flex;gap:.35rem;align-items:center;animation:bob 4.5s ease-in-out infinite}
+.st-1{top:-14px;left:-16px;background:var(--c3);transform:rotate(-6deg)}
+.st-2{bottom:22px;right:-18px;background:var(--c2);animation-delay:-2s;transform:rotate(5deg)}
+@keyframes bob{50%{translate:0 -8px}}
+.card h2.box-title{font-size:1.8rem;margin-bottom:1.1rem}
+.now ul{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.now li{display:flex;gap:.7rem;align-items:flex-start;font-weight:500}
+.now li span{font-size:1.3rem;line-height:1.1}
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">HEY<br>I'M <span class="home__title-color">NATÁLIA</span><br> CREATIVE UI/UX DESIGNER AND DEVELOPER.</h1>
-                   
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:22px}
+.stat{text-align:left;padding:1.2rem 1.4rem}
+.stat .big{font-family:var(--serif);font-weight:800;font-size:clamp(2rem,4vw,2.9rem);line-height:1}
+.stat small{font-weight:600;font-size:.95rem}
 
-                    <a href="mailto:nataliamirandaus10@gmail.com" class="button" id="#button">Let's Talk</a>
-                </div>
+/* ---------- marquee ---------- */
+.marquee{margin-top:70px;background:#141114;color:var(--c5);border-block:var(--b) solid #141114;overflow:hidden;padding:1rem 0;transform:rotate(-1.2deg);width:104vw;margin-left:-2vw}
+.marquee-track{display:flex;gap:2.2rem;width:max-content;animation:scroll 36s linear infinite;font-family:var(--serif);font-weight:700;font-size:1.5rem;white-space:nowrap}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span::after{content:"✦";margin-left:2.2rem;color:var(--c1)}
+@keyframes scroll{to{transform:translateX(-50%)}}
 
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/natalia-silva-a0515b234/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="mailto:nataliamirandaus10@gmail.com" class="home__social-icon"><i class="uil uil-envelope"></i></i></a>
-                    <a href="https://github.com/NataliaSilva10" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.about .bio{grid-column:span 7}
+.about .path{grid-column:span 5}
+.about .bio p{font-size:1.08rem;margin-bottom:.9rem}
+.tl{display:flex;flex-direction:column;gap:.75rem}
+.tl div{display:flex;gap:.8rem;align-items:center;background:var(--pill);border:2px solid #141114;border-radius:16px;padding:.7rem .9rem;font-weight:500;transition:transform .2s}
+.tl div:hover{transform:translateX(6px)}
+.tl b{font-family:var(--mono);background:#141114;color:#FFF6EC;border-radius:8px;padding:.1rem .45rem;font-size:.8rem}
+.bring{grid-column:span 12;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.bring .card i{font-size:2rem;margin-bottom:.6rem;display:block}
+.bring h3{font-size:1.35rem;margin-bottom:.3rem}
 
-             </section> 
+/* ---------- projects ---------- */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feat .card{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.art{height:190px;display:grid;place-items:center;border-bottom:var(--b) solid #141114;position:relative;overflow:hidden}
+.art .emoji{font-size:4.6rem;transition:transform .5s var(--ease)}
+.feat .card:hover .emoji{transform:scale(1.18) rotate(-8deg)}
+.art .pill{position:absolute;top:14px;left:14px}
+.art::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#14111426 1.5px,transparent 1.6px);background-size:16px 16px}
+.feat-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.feat-body h3{font-size:1.65rem}
+.feat-body .pills{margin-top:auto;padding-top:.5rem}
+.more{font-family:var(--serif);font-weight:700;display:inline-flex;align-items:center;gap:.3rem;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.more i{transition:transform .2s}.more:hover i{transform:translateX(4px)}
 
-           <!-- <===== ABOUT =====--> 
-           <section class="about section " id="about">
-            <h2 class="section-title">About me</h2>
+/* ---------- podcast ---------- */
+.pod{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.pod .info h2{font-size:clamp(2.4rem,5vw,3.8rem);margin-bottom:.8rem}
+.pod .info>p{font-size:1.12rem;max-width:560px}
+.listen{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.4rem 0 1.6rem}
+.episodes{display:flex;flex-direction:column;gap:.75rem}
+.ep{display:flex;gap:1rem;align-items:center;padding:.85rem 1rem;border-radius:18px;background:var(--pill);border:2px solid #141114;cursor:pointer;text-align:left;font:inherit;color:#141114;width:100%;box-shadow:3px 3px 0 #141114;transition:transform .2s,box-shadow .2s,background .2s}
+.ep:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #141114}
+.ep.on{background:var(--c5)}
+.ep .n{font-family:var(--mono);font-weight:700;background:#141114;color:#FFF6EC;border-radius:10px;padding:.35rem .55rem;font-size:.9rem}
+.ep h4{font-size:1.05rem}.ep p{font-size:.88rem;opacity:.8}
+.player{display:flex;flex-direction:column;gap:1.1rem}
+.cover{aspect-ratio:1/1;max-height:380px;border:var(--b) solid #141114;border-radius:20px;background:var(--c1);display:flex;flex-direction:column;justify-content:space-between;padding:1.6rem;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#14111430 1.5px,transparent 1.6px);background-size:18px 18px}
+.cover .ring{position:absolute;width:58%;aspect-ratio:1;border-radius:50%;border:3px solid #141114;background:var(--c5);right:-12%;bottom:-12%;animation:spin 18s linear infinite}
+.cover .ring::after{content:"";position:absolute;inset:30%;border-radius:50%;background:#141114}
+.player.playing .ring{animation-duration:4s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cover .pt{font-family:var(--serif);font-weight:800;font-size:clamp(2.8rem,6vw,4rem);line-height:.92;position:relative}
+.cover .ps{position:relative;font-weight:600}
+.cover .pill{position:relative;align-self:flex-start}
+.wave{display:flex;align-items:center;gap:4px;height:44px}
+.wave span{flex:1;background:#141114;border-radius:4px;height:20%;opacity:.35}
+.player.playing .wave span{opacity:1;animation:eq 1s ease-in-out infinite}
+@keyframes eq{0%,100%{height:15%}50%{height:100%}}
+.ctrl{display:flex;align-items:center;gap:1rem}
+.play{width:64px;height:64px;flex:none;border-radius:50%;background:#141114;color:var(--c5);border:none;font-size:2.1rem;display:grid;place-items:center;cursor:pointer;box-shadow:4px 4px 0 var(--pill);transition:transform .15s}
+.play:hover{transform:scale(1.07)}
+.ep-now small{font-family:var(--mono);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.ep-now strong{display:block;font-family:var(--serif);font-size:1.15rem}
+.embed-slot iframe{width:100%;border:3px solid #141114;border-radius:16px}
 
-            <div class="about__container bd-grid">
-                <div class="about__img">
-                    <img src="../natalia_portfolio/images/NataliaProfile.png" alt="">
-                </div>
-                
-                <div>
-                    <h2 class="about__subtitle">I'm Natalia</h2>
-                    <p class="about__text">Full stack developer based in New York, proficient in Python, Java, and MERN technologies. My expertise allows me to tackle complex problems and craft innovative solutions that deliver exceptional value to end-users. </p>
+/* ---------- work ---------- */
+.filters{display:flex;gap:.55rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.filters .pill.on{background:var(--c5)}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.work{padding:0;overflow:hidden;text-decoration:none;display:flex;flex-direction:column}
+.work.hide{display:none}
+.work .shot{aspect-ratio:16/10;overflow:hidden;border-bottom:var(--b) solid #141114;position:relative}
+.work .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.work:hover .shot img{transform:scale(1.07)}
+.work .go{position:absolute;right:12px;top:12px;width:42px;height:42px;border-radius:50%;background:var(--pill);border:2px solid #141114;display:grid;place-items:center;font-size:1.3rem;transform:scale(0) rotate(-45deg);transition:transform .3s var(--ease)}
+.work:hover .go{transform:scale(1) rotate(0)}
+.work .meta{padding:1rem 1.2rem 1.2rem;display:flex;flex-direction:column;gap:.45rem}
+.work h3{font-size:1.35rem}
+.work p{font-size:.95rem}
 
-                    <p class="about__text"> Beyond my technical abilities, I also have a keen eye for design. This allows me to advocate for users and create powerful visual designs, wireframes, storyboards, and prototypes. Understanding the technical limitations and challenges that engineers may encounter enables me to bridge the gap between design and development.</p>
-                </div>                                   
-            </div>
-        </section>
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Profesional Skills</h2>
-                        <p class="skills__text">the primary tools I am working with are:</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">HTML5</span>
-                            </div>
-                            <div class="skills__bar skills__html">
+/* ---------- skills + process ---------- */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.skills h3{font-size:1.45rem;margin-bottom:1rem;display:flex;gap:.5rem;align-items:center}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:22px}
+.step .num{font-family:var(--serif);font-weight:800;font-size:3.2rem;line-height:1;-webkit-text-stroke:2px #141114;color:transparent}
+.step h3{font-size:1.35rem;margin:.6rem 0 .3rem}
 
-                            </div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">CSS</span>
-                            </div>
-                            <div class="skills__bar skills__css">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon' ></i>
-                                <span class="skills__name">JAVASCRIPT</span>
-                            </div>
-                            <div class="skills__bar skills__js">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">80%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">UX/UI</span>
-                            </div>
-                            <div class="skills__bar skills__ux">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">70%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>              
-                        <img src="../natalia_portfolio/images/skills.webp" alt="" class="skills__img">
-                    </div>
-                </div>
-            </section>
-    <!--===== WORK =====-->
-    <section class="work section" id="work">
-        <h2 class="section-title">Work</h2>
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem}
+.contact h2{font-size:clamp(2.4rem,5vw,3.8rem);margin-bottom:1rem}
+.contact p{font-size:1.1rem;margin-bottom:1.3rem;max-width:520px}
+form{display:flex;flex-direction:column;gap:.8rem}
+form input,form textarea,form select{width:100%;padding:.95rem 1.1rem;border-radius:16px;border:2px solid #141114;background:var(--pill);color:#141114;font:inherit;outline:none;box-shadow:3px 3px 0 #141114;transition:transform .15s}
+form input:focus,form textarea:focus,form select:focus{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #141114}
+form textarea{min-height:130px;resize:vertical}
+form .pill{justify-content:center;font-size:1.1rem;padding:.75rem}
+form .pill:disabled{opacity:.7;cursor:wait}
+.form-status{font-weight:600;min-height:1.4em;margin:0!important;font-size:1rem!important}
+.form-status.ok{background:var(--pill);border:2px solid #141114;border-radius:14px;padding:.7rem 1rem;box-shadow:3px 3px 0 #141114}
+footer{padding:2rem 0 3rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-weight:500;color:var(--muted)}
+footer a{color:var(--text)}
 
-        <div class="work__container bd-grid">
-            <a href="https://github.com/NataliaSilva10/wepink-shop" class="work__img">
-                <img src="../natalia_portfolio/images/work5.png" alt="">
-            </a> 
-            <a href="https://github.com/NataliaSilva10/photobomb-" class="work__img">
-                <img src="../natalia_portfolio/images/work2.jpg" alt="">
-            </a>
-            <a href="https://github.com/NataliaSilva10/apple-webpage" class="work__img" id="photo">
-                <img src="../natalia_portfolio/images/work6.jpg" alt="">
-            </a>
-            <a href="https://github.com/NataliaSilva10/OrangeMusic" class="work__img">
-                <img src="../natalia_portfolio/images/work1.jpg" alt="">
-            </a>
-            <a href="https://github.com/NataliaSilva10/PokemonAPI" class="work__img" >
-                <img src="../natalia_portfolio/images/work4.jpg" alt="">
-            </a>    
-           
-         <a href="https://github.com/NataliaSilva10/GroupProject" class="work__img">
-                <img src="../natalia_portfolio/images/work3.jpg" alt="">
-            </a>
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(34px)}
+.rv.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease),box-shadow .3s var(--ease)}
+.card.lift.rv.in:hover{transform:translate(-3px,-3px) rotate(-.4deg)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (max-width:1000px){
+  .nav-links .nav-only{display:none}.menu-btn{display:inline-flex}
+  .intro,.photo{grid-column:span 12}
+  .photo{max-width:420px;justify-self:center;width:100%}
+  .does,.elsewhere{grid-column:span 6}.now{grid-column:span 12}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .about .bio,.about .path{grid-column:span 12}
+  .bring,.skills,.steps{grid-template-columns:repeat(2,1fr)}
+  .feat,.work-grid{grid-template-columns:repeat(2,1fr)}
+  .pod,.contact{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  :root{--sh:5px}
+  .logo{font-size:1.2rem;white-space:nowrap}.nav-links{gap:.3rem}.icon-pill{width:34px;height:34px;font-size:1rem;box-shadow:2px 2px 0 #141114}
+  .does,.elsewhere{grid-column:span 12}
+  .bring,.skills,.steps,.feat,.work-grid{grid-template-columns:1fr}
+  .work .go{transform:none}
+  .st-1{left:-6px}.st-2{right:-6px}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav class="nav wrap">
+    <a href="#home" class="logo">Natália Silva <span class="wave-hand">👋</span></a>
+    <div class="nav-links">
+      <a class="pill nav-only" href="#projects">Projects</a>
+      <a class="pill nav-only" href="#podcast">Podcast</a>
+      <a class="pill nav-only" href="#work">Work</a>
+      <a class="pill nav-only" href="#contact" style="background:var(--c5)">Work with me</a>
+      <a class="pill icon-pill" href="https://www.linkedin.com/in/natalia-silva-a0515b234/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+      <a class="pill icon-pill" href="https://github.com/NataliaSilva10" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class='bx bxl-github'></i></a>
+      <div class="theme-wrap">
+        <button class="pill icon-pill" id="themeBtn" aria-label="Change colors"><i class='bx bx-palette'></i></button>
+        <div class="theme-pop card" id="themePop">
+          <button class="pill" data-set-theme="candy"><span class="sw sw-candy"></span>Candy</button>
+          <button class="pill" data-set-theme="rose"><span class="sw sw-rose"></span>Soft rose</button>
         </div>
-    </section>
+      </div>
+      <button class="pill icon-pill" id="modeBtn" aria-label="Toggle dark mode"><i class='bx bx-moon'></i></button>
+      <button class="pill icon-pill menu-btn" id="menuBtn" aria-label="Open menu"><i class='bx bx-menu'></i></button>
+    </div>
+  </nav>
+</header>
 
-    <!--===== FOOTER =====-->
-    <footer class="footer">
-        <p class="footer__title">Contact Me</p>
-        <div class="footer__social">    
-            <a href="mailto:nataliamirandaus10@gmail.com" class="footer__icon"><i class="uil uil-envelope"></i></a>
-            <a href="https://github.com/NataliaSilva10" class="footer__icon"><i class="bx bxl-github"></i></a>
-            <a href="https://www.linkedin.com/in/natalia-silva-a0515b234" class="footer__icon"><i class='bx bxl-linkedin'></i></a>
-            <a href="https://www.instagram.com/natmirandas" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="pill icon-pill mobile-close" id="menuClose" aria-label="Close menu"><i class='bx bx-x'></i></button>
+  <a href="#about"><small>01</small>About</a>
+  <a href="#projects"><small>02</small>Projects</a>
+  <a href="#podcast"><small>03</small>Podcast</a>
+  <a href="#work"><small>04</small>Work</a>
+  <a href="#skills"><small>05</small>Skills</a>
+  <a href="#contact"><small>06</small>Contact</a>
+</div>
 
+<main>
+<!-- ================= HERO BENTO ================= -->
+<section id="home" style="padding-top:0">
+  <div class="wrap">
+    <div class="bento">
+      <div class="card v1 intro rv">
+        <span class="eyebrow"><b>00</b> ~ Developer · Designer · Creator</span>
+        <h1>Hi, I'm <strong>Natália</strong>. I'm a full-stack developer who builds <span class="rotator" id="rotator">AI agents</span></h1>
+        <p>I'm a developer and UI/UX designer in New York. I've also spent years behind the camera in broadcast and AV. These days I build AI tools, kids' learning apps and a tech podcast.</p>
+        <p>Off the clock, I teach kids to code, record episodes in Portuguese and start a new side project far too often.</p>
+        <div class="cta-row">
+          <a href="#contact" class="pill dark">Let's talk <i class='bx bx-right-arrow-alt'></i></a>
+          <a href="#podcast" class="pill"><i class='bx bx-headphone'></i> Listen to Ola Tech</a>
+          <span class="status"><span class="dot"></span> Open to AI &amp; product roles</span>
         </div>
-        <p class="footer__copy">&#169; Natalia Silva. All rigths reserved</p>
-    </footer>
+      </div>
 
+      <div class="card v5 photo rv">
+        <div class="photo-frame"><img src="images/NataliaProfile.png" alt="Portrait of Natália Silva"></div>
+        <span class="sticker st-2">That's me! 👋</span>
+      </div>
 
-    <!--===== SCROLL REVEAL =====-->
-    <script src="https://unpkg.com/scrollreveal"></script>
+      <div class="card v2 does lift rv">
+        <h2 class="box-title">Does</h2>
+        <div class="pills">
+          <span class="pill">Full-stack dev</span><span class="pill">UX/UI design</span><span class="pill">AI agents 🤖</span>
+          <span class="pill">Podcasting 🎙️</span><span class="pill">Kids STEM classes</span><span class="pill">Video &amp; broadcast 🎬</span>
+        </div>
+      </div>
 
-    <!--===== MAIN JS =====-->
-    <script src="../natalia_portfolio/js/main.js"></script>
+      <div class="card v3 elsewhere lift rv">
+        <h2 class="box-title">Elsewhere</h2>
+        <div class="pills">
+          <a class="pill" href="https://www.linkedin.com/in/natalia-silva-a0515b234/" target="_blank" rel="noopener"><i class='bx bxl-linkedin'></i> LinkedIn</a>
+          <a class="pill" href="https://github.com/NataliaSilva10" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
+          <a class="pill" href="https://www.instagram.com/ola_natech/" target="_blank" rel="noopener"><i class='bx bxl-instagram'></i> Instagram</a>
+          <a class="pill" href="mailto:nataliamirandaus10@gmail.com"><i class='bx bx-envelope'></i> Email</a>
+          <a class="pill" href="#podcast"><i class='bx bxl-spotify'></i> Ola Tech</a>
+        </div>
+      </div>
+
+      <div class="card v4 now lift rv">
+        <h2 class="box-title">Now</h2>
+        <ul>
+          <li><span>🚀</span><div>Building <strong>FutureKids.ai</strong>, a coding &amp; AI academy for kids</div></li>
+          <li><span>🪙</span><div>Designing <strong>HerChain</strong>, an AI agent that teaches women crypto</div></li>
+          <li><span>🎧</span><div>Recording new <strong>Ola Tech</strong> episodes, with video coming soon</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="card v6 stat rv"><div class="big">6+</div><small>shipped web apps</small></div>
+      <div class="card v3 stat rv"><div class="big">3</div><small>new AI &amp; ed-tech projects</small></div>
+      <div class="card v1 stat rv"><div class="big">EN · ES · PT</div><small>building in three languages</small></div>
+      <div class="card v5 stat rv"><div class="big">1</div><small>podcast, Ola Tech</small></div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <span>AI agents</span><span>Python</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>Java Spring</span><span>MongoDB</span><span>UX/UI design</span><span>Prototyping</span><span>Video production</span><span>Podcasting</span><span>Broadcast &amp; AV</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="eyebrow"><b>01</b> ~ About me</span><h2>Code, design &amp; a camera.</h2></div></div>
+    <div class="about">
+      <div class="card v6 bio rv">
+        <p>I'm a full-stack developer based in New York, working in <strong>Python, Java and the MERN stack</strong>. I bridge design and development: I make wireframes, storyboards and prototypes, and I understand the technical limits engineers work within.</p>
+        <p>Before code, I worked in <strong>audio and video technology</strong> for large companies like Morgan Stanley, and freelanced in broadcast and as a videographer.</p>
+        <p>Now I'm moving into <strong>AI</strong>. I build agents with tools like Claude, and I love working on teams that collaborate, keep learning and try new things.</p>
+      </div>
+      <div class="card v4 path rv">
+        <h3 style="font-size:1.5rem;margin-bottom:1rem">My path</h3>
+        <div class="tl">
+          <div><b>01</b>Audio &amp; video tech at large companies</div>
+          <div><b>02</b>Freelance broadcast &amp; videography</div>
+          <div><b>03</b>Full-stack development &amp; UI/UX</div>
+          <div><b>04</b>Now: AI agents, ed-tech &amp; podcasting</div>
+        </div>
+      </div>
+      <div class="bring">
+        <div class="card v1 lift rv"><i class='bx bx-code-curly'></i><h3>Develop</h3><p>Full-stack web apps with React, Node, Java Spring and MongoDB.</p></div>
+        <div class="card v3 lift rv"><i class='bx bx-palette'></i><h3>Design</h3><p>User flows, wireframes and prototypes that put people first.</p></div>
+        <div class="card v5 lift rv"><i class='bx bx-bot'></i><h3>Automate</h3><p>AI agents and integrations that take repetitive work off people's plates.</p></div>
+        <div class="card v2 lift rv"><i class='bx bx-video-recording'></i><h3>Create</h3><p>Video, audio and podcast production, from recording to final edit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEW PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="eyebrow"><b>02</b> ~ New projects</span><h2>What I'm building now.</h2></div><p>AI and education projects in progress. Follow along as they ship.</p></div>
+    <div class="feat">
+      <article class="card lift rv">
+        <div class="art v1" style="background:var(--c1)"><span class="pill small"><span class="dot"></span> In progress</span><span class="emoji">🚀</span></div>
+        <div class="feat-body" style="background:var(--pill)">
+          <h3>FutureKids.ai</h3>
+          <p>A Coding &amp; AI Academy for young kids: a playful learning side for ages 5–7, plus a parent portal for sign-ups and progress. It grows out of the weekend STEM workshops I teach.</p>
+          <div class="pills"><span class="pill small">Ed-tech</span><span class="pill small">AI</span><span class="pill small">UX for kids</span></div>
+          <a class="more" href="https://github.com/NataliaSilva10/futurekids.ai" target="_blank" rel="noopener">View on GitHub <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+      <article class="card lift rv">
+        <div class="art" style="background:var(--c3)"><span class="pill small"><span class="dot"></span> In progress</span><span class="emoji">🪙</span></div>
+        <div class="feat-body" style="background:var(--pill)">
+          <h3>HerChain</h3>
+          <p>An AI agent that teaches women crypto from zero, in English and Portuguese. It explains the basics in plain language, with no jargon and no hype.</p>
+          <div class="pills"><span class="pill small">AI agent</span><span class="pill small">Web3 education</span><span class="pill small">EN · PT</span></div>
+          <a class="more" href="#contact">Get early access <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+      <article class="card lift rv">
+        <div class="art" style="background:var(--c6)"><span class="pill small">✏️ Concept</span><span class="emoji">📖</span></div>
+        <div class="feat-body" style="background:var(--pill)">
+          <h3>Trilingual Kids Book</h3>
+          <p>An interactive, UX-designed book where kids ages 5–12 turn pages and add words in English, Portuguese and Spanish, through a 10-cycle learning structure.</p>
+          <div class="pills"><span class="pill small">Interactive</span><span class="pill small">Languages</span><span class="pill small">UX design</span></div>
+          <a class="more" href="#contact">Follow the project <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PODCAST ================= -->
+<section id="podcast">
+  <div class="wrap">
+    <div class="pod">
+      <div class="card v2 info rv">
+        <span class="eyebrow"><b>03</b> ~ Podcast</span>
+        <h2>Ola Tech 🎙️</h2>
+        <p>A podcast in Portuguese about tech, AI and careers. In solo episodes I explain tech topics for beginners, the way I wish someone had explained them to me. Video episodes are coming soon.</p>
+        <div class="listen">
+          <a class="pill dark" id="spotifyLink" href="#"><i class='bx bxl-spotify'></i> Spotify</a>
+          <a class="pill" id="appleLink" href="#"><i class='bx bx-podcast'></i> Apple Podcasts</a>
+          <a class="pill" id="youtubeLink" href="#"><i class='bx bxl-youtube'></i> YouTube</a>
+          <a class="pill" href="https://www.instagram.com/ola_natech/" target="_blank" rel="noopener"><i class='bx bxl-instagram'></i> @ola_natech</a>
+        </div>
+        <div class="episodes" id="episodes"></div>
+      </div>
+      <div class="card v5 player rv" id="player">
+        <div class="cover">
+          <span class="pill small">Em português 🇧🇷</span>
+          <div class="ring"></div>
+          <div><div class="pt">Ola<br>Tech</div><div class="ps">Tech · AI · Careers</div></div>
+        </div>
+        <div class="wave" id="wave"></div>
+        <div class="ctrl">
+          <button class="play" id="playBtn" aria-label="Play"><i class='bx bx-play'></i></button>
+          <div class="ep-now"><small id="nowLabel">Featured episode</small><strong id="nowTitle">—</strong></div>
+        </div>
+        <div class="embed-slot" id="embedSlot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="eyebrow"><b>04</b> ~ Selected work</span><h2>Things I've shipped.</h2></div>
+      <div class="filters" id="filters">
+        <button class="pill on" data-f="all">All</button>
+        <button class="pill" data-f="react">React</button>
+        <button class="pill" data-f="fullstack">Full stack</button>
+        <button class="pill" data-f="java">Java</button>
+        <button class="pill" data-f="frontend">Front-end</button>
+      </div>
+    </div>
+    <div class="work-grid">
+      <a class="card work lift v1 rv" data-cat="react fullstack" href="https://github.com/NataliaSilva10/wepink-shop" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work5.png" alt="wepink shop screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>wepink shop</h3><p>E-commerce store with cart and Stripe checkout.</p><div class="pills"><span class="pill small">React</span><span class="pill small">Redux</span><span class="pill small">Stripe</span><span class="pill small">Firebase</span></div></div>
+      </a>
+      <a class="card work lift v3 rv" data-cat="react fullstack" href="https://github.com/NataliaSilva10/photobomb-" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work2.jpg" alt="Photobomb screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Photobomb</h3><p>Social app with auth, friends, photo feed, likes and dark mode.</p><div class="pills"><span class="pill small">MERN</span><span class="pill small">MUI</span><span class="pill small">Auth</span></div></div>
+      </a>
+      <a class="card work lift v5 rv" data-cat="frontend" href="https://github.com/NataliaSilva10/apple-webpage" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work6.jpg" alt="Apple-inspired webpage screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Apple-inspired page</h3><p>Product landing page with interactive JavaScript sections.</p><div class="pills"><span class="pill small">HTML</span><span class="pill small">CSS</span><span class="pill small">JavaScript</span></div></div>
+      </a>
+      <a class="card work lift v6 rv" data-cat="java fullstack" href="https://github.com/NataliaSilva10/OrangeMusic" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work1.jpg" alt="Orange Music screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Orange Music</h3><p>Music app with artist search, song ratings and top-song rankings.</p><div class="pills"><span class="pill small">Java</span><span class="pill small">Spring</span><span class="pill small">JSP</span></div></div>
+      </a>
+      <a class="card work lift v4 rv" data-cat="react frontend" href="https://github.com/NataliaSilva10/PokemonAPI" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work4.jpg" alt="Pokémon API app screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Pokémon API</h3><p>React app that fetches and lists every Pokémon from a public API.</p><div class="pills"><span class="pill small">React</span><span class="pill small">Hooks</span><span class="pill small">Bootstrap</span></div></div>
+      </a>
+      <a class="card work lift v2 rv" data-cat="react fullstack" href="https://github.com/NataliaSilva10/GroupProject" target="_blank" rel="noopener">
+        <div class="shot"><img src="images/work3.jpg" alt="Team project screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Team project</h3><p>Full-stack app built with a team, from wireframe to deploy.</p><div class="pills"><span class="pill small">React</span><span class="pill small">Node</span><span class="pill small">Bootstrap</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS + PROCESS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv"><div><span class="eyebrow"><b>05</b> ~ Toolkit</span><h2>What I work with.</h2></div></div>
+    <div class="skills">
+      <div class="card v3 lift rv"><h3>💻 Code</h3><div class="pills"><span class="pill small">Python</span><span class="pill small">JavaScript</span><span class="pill small">Java</span><span class="pill small">HTML5</span><span class="pill small">CSS</span><span class="pill small">SQL</span></div></div>
+      <div class="card v1 lift rv"><h3>🧱 Frameworks</h3><div class="pills"><span class="pill small">React</span><span class="pill small">Redux</span><span class="pill small">Node / Express</span><span class="pill small">MongoDB</span><span class="pill small">Spring</span><span class="pill small">Firebase</span></div></div>
+      <div class="card v6 lift rv"><h3>🤖 AI</h3><div class="pills"><span class="pill small">Claude</span><span class="pill small">AI agents</span><span class="pill small">Integrations</span><span class="pill small">Automation</span><span class="pill small">Prompt design</span></div></div>
+      <div class="card v4 lift rv"><h3>🎬 Design &amp; media</h3><div class="pills"><span class="pill small">UX/UI</span><span class="pill small">Wireframes</span><span class="pill small">Prototyping</span><span class="pill small">Video</span><span class="pill small">Audio / AV</span><span class="pill small">Podcasting</span></div></div>
+    </div>
+    <div class="steps">
+      <div class="card v5 step lift rv"><div class="num">01</div><h3>Listen</h3><p>Understand the people, the problem and what success looks like.</p></div>
+      <div class="card v2 step lift rv"><div class="num">02</div><h3>Design</h3><p>Sketch flows, wireframes and a clickable prototype to test early.</p></div>
+      <div class="card v3 step lift rv"><div class="num">03</div><h3>Build</h3><p>Develop the front end, back end and AI pieces in small, testable steps.</p></div>
+      <div class="card v1 step lift rv"><div class="num">04</div><h3>Iterate</h3><p>Ship, gather feedback and keep improving with the team.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="card v3 contact rv">
+      <div>
+        <span class="eyebrow"><b>06</b> ~ Work with me</span>
+        <h2>Let's build something ✨</h2>
+        <p>Hiring for an AI or product role, need a website or app, or want to be a guest on Ola Tech? Send me a message.</p>
+        <div class="pills" style="margin-bottom:1.4rem"><span class="pill">AI roles</span><span class="pill">Web &amp; apps</span><span class="pill">UX/UI</span><span class="pill">Podcast guests</span><span class="pill">Kids STEM workshops</span></div>
+        <div class="pills">
+          <a class="pill dark" href="mailto:nataliamirandaus10@gmail.com"><i class='bx bx-envelope'></i> nataliamirandaus10@gmail.com</a>
+          <button class="pill" id="copyEmail" type="button"><i class='bx bx-copy'></i> <span>Copy email</span></button>
+          <a class="pill" href="https://www.linkedin.com/in/natalia-silva-a0515b234/" target="_blank" rel="noopener"><i class='bx bxl-linkedin'></i> LinkedIn</a>
+          <a class="pill" href="https://github.com/NataliaSilva10" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
+          <a class="pill" href="https://www.instagram.com/ola_natech/" target="_blank" rel="noopener"><i class='bx bxl-instagram'></i> Instagram</a>
+        </div>
+      </div>
+      <form id="contactForm">
+        <input name="name" placeholder="Your name" required>
+        <input name="email" type="email" placeholder="Your email" required>
+        <select name="topic">
+          <option>Job opportunity</option>
+          <option>Website or app project</option>
+          <option>Podcast guest</option>
+          <option>Kids STEM workshop</option>
+          <option>Something else</option>
+        </select>
+        <textarea name="message" placeholder="Tell me a little about it…" required></textarea>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="pill dark" type="submit" id="sendBtn">Send message <i class='bx bx-send'></i></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> Natália Silva. All rights reserved.</span><a href="mailto:nataliamirandaus10@gmail.com">nataliamirandaus10@gmail.com</a><span>Made in New York ✦ <a href="#home">Back to top ↑</a></span></div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT YOUR PODCAST HERE
+   - spotifyShowId: the part after open.spotify.com/show/ in your
+     show link. Once set, a real Spotify player appears.
+   - spotify / apple / youtube: full links for the buttons.
+   - episodes: titles, descriptions and (optional) Spotify episode IDs.
+   ============================================================ */
+const PODCAST = {
+  spotifyShowId: "",
+  spotify: "",
+  apple: "",
+  youtube: "",
+  episodes: [
+    { n:"01", title:"O que é Inteligência Artificial?", desc:"AI explained from zero, for beginners.", spotifyEpisodeId:"" },
+    { n:"02", title:"Como entrar na área de tecnologia", desc:"Career paths into tech, step by step.", spotifyEpisodeId:"" },
+    { n:"03", title:"Agentes de IA na prática", desc:"What AI agents are and how I build them.", spotifyEpisodeId:"" }
+  ]
+};
+
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---- theme + dark mode (remembered per visitor) ---- */
+const store = { get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
+const root = document.documentElement;
+function setMode(m){root.dataset.mode=m;$('#modeBtn i').className=m==='dark'?'bx bx-sun':'bx bx-moon';store.set('ns-mode',m)}
+function setTheme(t){root.dataset.theme=t;store.set('ns-theme',t)}
+setMode(store.get('ns-mode') || 'light'); setTheme(store.get('ns-theme') || 'candy');
+$('#modeBtn').onclick = () => setMode(root.dataset.mode==='dark'?'light':'dark');
+$('#themeBtn').onclick = e => {e.stopPropagation();$('#themePop').classList.toggle('open')};
+$$('[data-set-theme]').forEach(b => b.onclick = () => {setTheme(b.dataset.setTheme);$('#themePop').classList.remove('open')});
+document.addEventListener('click', e => { if(!e.target.closest('.theme-wrap')) $('#themePop').classList.remove('open') });
+
+/* ---- mobile menu ---- */
+$('#menuBtn').onclick = () => $('#mobileMenu').classList.add('open');
+$('#menuClose').onclick = () => $('#mobileMenu').classList.remove('open');
+$$('#mobileMenu a').forEach(a => a.onclick = () => $('#mobileMenu').classList.remove('open'));
+
+/* ---- progress bar + active nav pill ---- */
+const navPills = [...$$('.nav-links a.pill')];
+addEventListener('scroll', () => {
+  const y = scrollY, h = document.body.scrollHeight - innerHeight;
+  $('#progress').style.width = (y / h * 100) + '%';
+  let cur = ''; $$('section[id]').forEach(s => { if (y >= s.offsetTop - 160) cur = s.id });
+  navPills.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur && cur !== 'contact'));
+}, {passive:true});
+
+/* ---- typing rotator ---- */
+const words = ['AI agents.','web apps.','kids’ learning tools.','podcasts.','friendly interfaces.'];
+let wi=0, ci=words[0].length, del=true; const rot=$('#rotator');
+(function type(){
+  const w = words[wi]; ci += del ? -1 : 1; rot.textContent = w.slice(0, ci);
+  let d = del ? 45 : 85;
+  if (!del && ci === w.length) { del = true; d = 1800 } else if (del && ci === 0) { del = false; wi = (wi+1) % words.length; d = 300 }
+  setTimeout(type, d);
+})();
+
+/* ---- marquee loop ---- */
+const mq = $('#marquee'); mq.innerHTML += mq.innerHTML;
+
+/* ---- scroll reveal ---- */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), {threshold:.1});
+$$('.rv').forEach((el,i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el) });
+setTimeout(() => $$('.rv').forEach(el => el.style.transitionDelay = ''), 2500);
+
+/* ---- work filters ---- */
+$$('#filters .pill').forEach(b => b.onclick = () => {
+  $$('#filters .pill').forEach(x => x.classList.remove('on')); b.classList.add('on');
+  const f = b.dataset.f;
+  $$('.work').forEach(w => w.classList.toggle('hide', f !== 'all' && !w.dataset.cat.includes(f)));
+});
+
+/* ---- podcast player ---- */
+const wave = $('#wave');
+for (let i=0;i<36;i++){ const s=document.createElement('span'); s.style.animationDelay=(Math.random()*-1).toFixed(2)+'s'; s.style.height=(15+Math.random()*60)+'%'; wave.appendChild(s) }
+['spotify','apple','youtube'].forEach(k => { const a=$('#'+k+'Link'); if (PODCAST[k]) { a.href=PODCAST[k]; a.target='_blank'; a.rel='noopener' } else { a.href='#podcast'; a.title='Link coming soon' } });
+let current = 0;
+PODCAST.episodes.forEach((ep,i) => {
+  const b=document.createElement('button'); b.className='ep';
+  b.innerHTML=`<span class="n">${ep.n}</span><div><h4>${ep.title}</h4><p>${ep.desc}</p></div>`;
+  b.onclick=()=>selectEp(i,true); $('#episodes').appendChild(b);
+});
+function embed(type,id){ $('#embedSlot').innerHTML=`<iframe src="https://open.spotify.com/embed/${type}/${id}?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>` }
+function selectEp(i,play){
+  current=i; const ep=PODCAST.episodes[i];
+  $$('.ep').forEach((e,j)=>e.classList.toggle('on',j===i));
+  $('#nowTitle').textContent=ep.title; $('#nowLabel').textContent='Episode '+ep.n;
+  if (play){
+    if (ep.spotifyEpisodeId) embed('episode',ep.spotifyEpisodeId); else if (PODCAST.spotifyShowId) embed('show',PODCAST.spotifyShowId);
+    $('#player').classList.add('playing'); $('#playBtn i').className='bx bx-pause';
+  }
+}
+selectEp(0,false);
+if (PODCAST.spotifyShowId) embed('show',PODCAST.spotifyShowId);
+$('#playBtn').onclick = () => {
+  const on = $('#player').classList.toggle('playing');
+  $('#playBtn i').className = on ? 'bx bx-pause' : 'bx bx-play';
+  if (on) selectEp(current,true);
+};
+
+/* ---- copy email ---- */
+$('#copyEmail').onclick = async () => {
+  const t = $('#copyEmail span');
+  try { await navigator.clipboard.writeText('nataliamirandaus10@gmail.com'); t.textContent = 'Copied!' }
+  catch(e) { t.textContent = 'nataliamirandaus10@gmail.com' }
+  setTimeout(() => t.textContent = 'Copy email', 2000);
+};
+
+/* ---- contact form → emails Natália via FormSubmit ---- */
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/nataliamirandaus10@gmail.com';
+$('#contactForm').onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target, d = new FormData(f), btn = $('#sendBtn'), st = $('#formStatus');
+  if (d.get('_honey')) return;                       // spam bot
+  btn.disabled = true; btn.innerHTML = 'Sending… <i class="bx bx-loader-alt bx-spin"></i>';
+  st.className = 'form-status'; st.textContent = '';
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: d.get('name'), email: d.get('email'), topic: d.get('topic'), message: d.get('message'),
+        _subject: `New portfolio message: ${d.get('topic')} — from ${d.get('name')}`,
+        _replyto: d.get('email'), _template: 'table', _captcha: 'false'
+      })
+    });
+    const out = await res.json().catch(() => ({}));
+    if (!res.ok || String(out.success) === 'false') throw new Error(out.message || 'Send failed');
+    f.reset();
+    st.className = 'form-status ok';
+    st.textContent = `Thanks, ${d.get('name')}! Your message was sent. I'll get back to you soon. 💌`;
+    btn.innerHTML = 'Sent! <i class="bx bx-check"></i>';
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = 'Send message <i class="bx bx-send"></i>' }, 4000);
+  } catch (err) {
+    st.className = 'form-status';
+    st.innerHTML = 'Sorry, that didn\u2019t go through. Please email me at <a href="mailto:nataliamirandaus10@gmail.com">nataliamirandaus10@gmail.com</a>.';
+    btn.disabled = false; btn.innerHTML = 'Send message <i class="bx bx-send"></i>';
+  }
+};
+</script>
 </body>
 </html>
-
