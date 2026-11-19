@@ -176,6 +176,8 @@ header{position:sticky;top:0;z-index:50;background:var(--head);border-bottom:var
 .cover .pt{font-family:var(--serif);font-weight:800;font-size:clamp(2.8rem,6vw,4rem);line-height:.92;position:relative}
 .cover .ps{position:relative;font-weight:600}
 .cover .pill{position:relative;align-self:flex-start}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.cover .pill{z-index:3}
 .wave{display:flex;align-items:center;gap:4px;height:44px}
 .wave span{flex:1;background:#141114;border-radius:4px;height:20%;opacity:.35}
 .player.playing .wave span{opacity:1;animation:eq 1s ease-in-out infinite}
@@ -438,6 +440,7 @@ footer a{color:var(--text)}
       </div>
       <div class="card v5 player rv" id="player">
         <div class="cover">
+          <img class="cover-img" src="https://i.scdn.co/image/ab6765630000ba8a6bd5b1f8c58135e3c0b713dc" alt="OlaTech podcast cover" onerror="this.remove()">
           <span class="pill small">Em português 🇧🇷</span>
           <div class="ring"></div>
           <div><div class="pt">Ola<br>Tech</div><div class="ps">Tech · AI · Careers</div></div>
