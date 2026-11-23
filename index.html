@@ -206,6 +206,15 @@ header{position:sticky;top:0;z-index:50;background:var(--head);border-bottom:var
 .shot.space .sat{font-size:4.4rem;position:relative;transition:transform .6s var(--ease)}
 .work:hover .shot.space .sat{transform:scale(1.12) rotate(-12deg)}
 .shot.space .live{position:absolute;left:12px;top:12px}
+.shot.lab{background:var(--c5);display:grid;place-items:center}
+.shot.lab::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#14111418 1.5px,transparent 1.6px),linear-gradient(90deg,#14111418 1.5px,transparent 1.6px);background-size:22px 22px}
+.shot.lab .layers{position:absolute;display:grid;gap:8px;width:46%;transform:rotate(-6deg) translateX(18%)}
+.shot.lab .layers span{height:22px;border:2px solid #141114;border-radius:8px;box-shadow:3px 3px 0 #141114;transition:transform .5s var(--ease)}
+.shot.lab .layers span:nth-child(1){background:var(--c1)}.shot.lab .layers span:nth-child(2){background:var(--c3)}.shot.lab .layers span:nth-child(3){background:var(--c6)}
+.work:hover .shot.lab .layers span:nth-child(1){transform:translateX(-14px)}.work:hover .shot.lab .layers span:nth-child(3){transform:translateX(14px)}
+.shot.lab .sat{font-size:4.2rem;position:relative;transform:translateX(-45%);transition:transform .6s var(--ease)}
+.work:hover .shot.lab .sat{transform:translateX(-45%) scale(1.12) rotate(-10deg)}
+.shot.lab .live{position:absolute;left:12px;top:12px}
 .work .meta{padding:1rem 1.2rem 1.2rem;display:flex;flex-direction:column;gap:.45rem}
 .work h3{font-size:1.35rem}
 .work p{font-size:.95rem}
@@ -478,6 +487,10 @@ footer a{color:var(--text)}
       <a class="card work lift v3 rv" data-cat="react frontend" href="https://virtualsatellite.lovable.app/" target="_blank" rel="noopener">
         <div class="shot space" role="img" aria-label="Mission Control satellite simulator"><span class="orbit"></span><span class="sat">🛰️</span><span class="pill small live"><span class="dot"></span> Live demo</span><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
         <div class="meta"><h3>Mission Control</h3><p>Satellite broadcast simulator built on public NASA data, modeling a broadcast system with uplink signal routing.</p><div class="pills"><span class="pill small">React</span><span class="pill small">NASA data</span><span class="pill small">Broadcast</span><span class="pill small">Lovable</span></div></div>
+      </a>
+      <a class="card work lift v1 rv" data-cat="react frontend" href="https://resnoteai.lovable.app/" target="_blank" rel="noopener">
+        <div class="shot lab" role="img" aria-label="ResNote AI research tools"><span class="layers"><span></span><span></span><span></span></span><span class="sat">🔬</span><span class="pill small live"><span class="dot"></span> Live demo</span><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>ResNote AI</h3><p>AI tools platform that makes scientific research, data analysis and study more accessible, exploring the layers of AI.</p><div class="pills"><span class="pill small">AI</span><span class="pill small">Research</span><span class="pill small">Ed-tech</span><span class="pill small">Lovable</span></div></div>
       </a>
       <a class="card work lift v1 rv" data-cat="react fullstack" href="https://github.com/NataliaSilva10/wepink-shop" target="_blank" rel="noopener">
         <div class="shot"><img src="images/work5.png" alt="wepink shop screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
