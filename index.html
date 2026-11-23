@@ -200,6 +200,12 @@ header{position:sticky;top:0;z-index:50;background:var(--head);border-bottom:var
 .work:hover .shot img{transform:scale(1.07)}
 .work .go{position:absolute;right:12px;top:12px;width:42px;height:42px;border-radius:50%;background:var(--pill);border:2px solid #141114;display:grid;place-items:center;font-size:1.3rem;transform:scale(0) rotate(-45deg);transition:transform .3s var(--ease)}
 .work:hover .go{transform:scale(1) rotate(0)}
+.shot.space{background:radial-gradient(circle at 78% 82%,#3b2a6b 0 22%,transparent 23%),#141114;display:grid;place-items:center}
+.shot.space::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#FFF6EC 1.2px,transparent 1.4px),radial-gradient(#FFF6EC99 1px,transparent 1.2px);background-size:46px 46px,23px 23px;background-position:0 0,11px 17px;opacity:.55}
+.shot.space .orbit{position:absolute;width:62%;aspect-ratio:1;border:2px dashed #FFF6EC66;border-radius:50%;animation:spin 30s linear infinite}
+.shot.space .sat{font-size:4.4rem;position:relative;transition:transform .6s var(--ease)}
+.work:hover .shot.space .sat{transform:scale(1.12) rotate(-12deg)}
+.shot.space .live{position:absolute;left:12px;top:12px}
 .work .meta{padding:1rem 1.2rem 1.2rem;display:flex;flex-direction:column;gap:.45rem}
 .work h3{font-size:1.35rem}
 .work p{font-size:.95rem}
@@ -469,6 +475,10 @@ footer a{color:var(--text)}
       </div>
     </div>
     <div class="work-grid">
+      <a class="card work lift v3 rv" data-cat="react frontend" href="https://virtualsatellite.lovable.app/" target="_blank" rel="noopener">
+        <div class="shot space" role="img" aria-label="Mission Control satellite simulator"><span class="orbit"></span><span class="sat">🛰️</span><span class="pill small live"><span class="dot"></span> Live demo</span><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
+        <div class="meta"><h3>Mission Control</h3><p>Satellite broadcast simulator built on public NASA data, modeling a broadcast system with uplink signal routing.</p><div class="pills"><span class="pill small">React</span><span class="pill small">NASA data</span><span class="pill small">Broadcast</span><span class="pill small">Lovable</span></div></div>
+      </a>
       <a class="card work lift v1 rv" data-cat="react fullstack" href="https://github.com/NataliaSilva10/wepink-shop" target="_blank" rel="noopener">
         <div class="shot"><img src="images/work5.png" alt="wepink shop screenshot" loading="lazy"><span class="go"><i class='bx bx-right-arrow-alt'></i></span></div>
         <div class="meta"><h3>wepink shop</h3><p>E-commerce store with cart and Stripe checkout.</p><div class="pills"><span class="pill small">React</span><span class="pill small">Redux</span><span class="pill small">Stripe</span><span class="pill small">Firebase</span></div></div>
